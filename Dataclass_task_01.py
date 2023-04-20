@@ -24,18 +24,36 @@ class Product:
     def total_cost(self):
         return self.price * self.quantity
     
-    def object_list(self):
-        pass
+    
 
 @dataclass
-class Products(Product):
-    products: List[Product]
+class Products:
+    products = []
+
+    def add_product(self, product: Product) -> None:
+        self.products.append(product)
+
 
     def print_list(self):
-        return print(self.products)
+        for product in self.products:
+            print(f"{product.product_id}, {product.name}, {product.price}, {product.quantity}")
+        
 
 
-product_one = Product(product_id=1, name='Phone', price=150.0, quantity=5)
-product_two = Product(product_id=2, name='Tv', price=250.0, quantity=7)
+product_01 = Product(product_id=1, name='Phone', price=150.0, quantity=5)
+product_02 = Product(product_id=2, name='Tv', price=250.0, quantity=7)
+product_03 = Product(product_id=3, name='Keyboard', price=15.0, quantity=52)
+product_04 = Product(product_id=4, name='Mouse', price=30.0, quantity=15)
+product_05 = Product(product_id=5, name='Radio', price=50.0, quantity=19)
+product_06 = Product(product_id=6, name='PC', price=1500.0, quantity=3)
 
-Products.print_list()
+product = Products()
+product.add_product(product_01)
+product.add_product(product_02)
+product.add_product(product_03)
+product.add_product(product_04)
+product.add_product(product_05)
+product.add_product(product_06)
+
+product.print_list()
+# print(product.products)
