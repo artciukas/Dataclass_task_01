@@ -10,7 +10,7 @@ Create a list of Product objects and write a function that takes this list as in
 
 Write a program that creates a list of 5 Product objects, prints out their attributes, and then calls the function to find the product with the highest total cost.
 """
-
+from typing import List
 from dataclasses import dataclass
 
 @dataclass
@@ -23,8 +23,19 @@ class Product:
 
     def total_cost(self):
         return self.price * self.quantity
+    
+    def object_list(self):
+        pass
 
+@dataclass
+class Products(Product):
+    products: List[Product]
+
+    def print_list(self):
+        return print(self.products)
 
 
 product_one = Product(product_id=1, name='Phone', price=150.0, quantity=5)
-print(product_one.total_cost())
+product_two = Product(product_id=2, name='Tv', price=250.0, quantity=7)
+
+Products.print_list()
