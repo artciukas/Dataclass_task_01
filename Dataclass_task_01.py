@@ -21,22 +21,31 @@ class Product:
     price: float
     quantity: int
 
-    def total_cost(self):
-        return self.price * self.quantity
-    
-    
 
 @dataclass
 class Products:
     products = []
+    
+    def total_cost(self, product: Product):
+        return product.price * product.quantity
 
     def add_product(self, product: Product) -> None:
         self.products.append(product)
 
+    def get_max(self):
+        highest_cost = 0
+        for product in self.products:
+            if self.total_cost(product) > highest_cost:
+                highest_cost = self.total_cost(product)
+                highest_cost_product = product.name
+            else:
+                continue
+        return f"highest cost = {highest_cost} name of the product = {highest_cost_product}"
+    
 
     def print_list(self):
         for product in self.products:
-            print(f"{product.product_id}, {product.name}, {product.price}, {product.quantity}")
+            print(f"Id: {product.product_id}, name: {product.name}, price: {product.price}, quantity: {product.quantity}")
         
 
 
@@ -55,5 +64,7 @@ product.add_product(product_04)
 product.add_product(product_05)
 product.add_product(product_06)
 
-product.print_list()
+print(product.total_cost(product_01))
+print(product.get_max())
+# product.print_list()
 # print(product.products)
